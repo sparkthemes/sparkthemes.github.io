@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Spark Themes — Premium Shopify & WordPress Design Studio</title>
+  <meta name="description" content="Spark Themes crafts premium Shopify and WordPress themes and templates built for brands that demand excellence." />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap');
+  </style>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black:   #0b0b0b;
+      --dark:    #121212;
+      --card:    #181818;
+      --border:  #2a2a2a;
+      --muted:   #555;
+      --body:    #a8a8a8;
+      --light:   #e8e2d6;
+      --white:   #f5f0e8;
+      --gold:    #c9a84c;
+      --gold2:   #e8c96e;
+      --serif:   'Cormorant Garamond', Georgia, serif;
+      --sans:    'Jost', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--black);
+      color: var(--body);
+      font-family: var(--sans);
+      font-weight: 300;
+      font-size: 16px;
+      line-height: 1.75;
+      overflow-x: hidden;
+    }
+
+    /* ── NOISE OVERLAY ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+      opacity: 0.03;
+      pointer-events: none;
+      z-index: 1000;
+    }
+
+    /* ── SELECTION ── */
+    ::selection { background: var(--gold); color: var(--black); }
+
+    /* ── SCROLLBAR ── */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--black); }
+    ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 2px; }
+
+    /* ══════════════════════════════
+       NAV
+    ══════════════════════════════ */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.4rem 5vw;
+      border-bottom: 1px solid transparent;
+      transition: border-color .4s, background .4s, backdrop-filter .4s;
+    }
+    nav.scrolled {
+      border-color: var(--border);
+      background: rgba(11,11,11,0.82);
+      backdrop-filter: blur(18px);
+    }
+    .nav-logo {
+      font-family: var(--serif);
+      font-size: 1.45rem;
+      font-weight: 500;
+      color: var(--white);
+      letter-spacing: .02em;
+      text-decoration: none;
+    }
+    .nav-logo span { color: var(--gold); }
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+    .nav-links a, .nav-links span {
+      font-size: .78rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--body);
+      text-decoration: none;
+      transition: color .25s;
+    }
+    .nav-links a:hover, .nav-links span:hover { color: var(--gold); }
+    .nav-cta {
+      font-size: .76rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid var(--gold);
+      padding: .5rem 1.4rem;
+      text-decoration: none;
+      transition: background .25s, color .25s;
+    }
+    .nav-cta:hover { background: var(--gold); color: var(--black); }
+
+    /* ══════════════════════════════
+       HERO
+    ══════════════════════════════ */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 12rem 5vw 8rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* diagonal grid lines */
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        repeating-linear-gradient(
+          -45deg,
+          transparent,
+          transparent 60px,
+          rgba(201,168,76,.035) 60px,
+          rgba(201,168,76,.035) 61px
+        );
+      pointer-events: none;
+    }
+
+    /* large ambient glow */
+    .hero-glow {
+      position: absolute;
+      width: 700px; height: 700px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(201,168,76,.1) 0%, transparent 70%);
+      top: -100px; right: -150px;
+      pointer-events: none;
+      animation: pulse 8s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%,100% { transform: scale(1); opacity: .8; }
+      50%      { transform: scale(1.12); opacity: 1; }
+    }
+
+    .hero-label {
+      font-size: .72rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: fadeUp .8s .2s forwards;
+    }
+    .hero-title {
+      font-family: var(--serif);
+      font-size: clamp(3.2rem, 8vw, 7rem);
+      font-weight: 300;
+      line-height: 1.05;
+      color: var(--white);
+      max-width: 820px;
+      margin-bottom: 1.8rem;
+      opacity: 0;
+      animation: fadeUp .8s .4s forwards;
+    }
+    .hero-title em {
+      font-style: italic;
+      color: var(--gold);
+    }
+    .hero-sub {
+      font-size: 1rem;
+      font-weight: 300;
+      color: var(--body);
+      max-width: 480px;
+      line-height: 1.85;
+      margin-bottom: 3rem;
+      opacity: 0;
+      animation: fadeUp .8s .6s forwards;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 1.2rem;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeUp .8s .8s forwards;
+    }
+    .btn-primary {
+      display: inline-block;
+      padding: .85rem 2.2rem;
+      background: var(--gold);
+      color: var(--black);
+      font-family: var(--sans);
+      font-size: .78rem;
+      font-weight: 500;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background .25s, transform .2s;
+    }
+    .btn-primary:hover { background: var(--gold2); transform: translateY(-2px); }
+    .btn-ghost {
+      display: inline-block;
+      padding: .85rem 2.2rem;
+      border: 1px solid var(--border);
+      color: var(--light);
+      font-family: var(--sans);
+      font-size: .78rem;
+      font-weight: 400;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: border-color .25s, color .25s;
+    }
+    .btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+
+    /* scroll indicator */
+    .scroll-cue {
+      position: absolute;
+      bottom: 3rem;
+      left: 5vw;
+      display: flex;
+      align-items: center;
+      gap: .9rem;
+      opacity: 0;
+      animation: fadeUp .8s 1.2s forwards;
+    }
+    .scroll-cue span {
+      font-size: .68rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .scroll-line {
+      width: 48px;
+      height: 1px;
+      background: var(--gold);
+      position: relative;
+      overflow: hidden;
+    }
+    .scroll-line::after {
+      content: '';
+      position: absolute;
+      left: -100%; top: 0;
+      width: 100%; height: 100%;
+      background: var(--white);
+      animation: lineSweep 2.2s 1.5s ease-in-out infinite;
+    }
+    @keyframes lineSweep {
+      0%   { left: -100%; }
+      50%  { left:  100%; }
+      100% { left:  100%; }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(22px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ══════════════════════════════
+       SECTION COMMONS
+    ══════════════════════════════ */
+    section { position: relative; }
+
+    .section-inner {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0 5vw;
+    }
+
+    .section-tag {
+      font-size: .68rem;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      display: flex;
+      align-items: center;
+      gap: .8rem;
+      margin-bottom: 1.2rem;
+    }
+    .section-tag::before {
+      content: '';
+      display: block;
+      width: 28px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    .section-heading {
+      font-family: var(--serif);
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      font-weight: 300;
+      color: var(--white);
+      line-height: 1.15;
+    }
+    .section-heading em { font-style: italic; color: var(--gold); }
+
+    /* reveal on scroll */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity .75s ease, transform .75s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ══════════════════════════════
+       MARQUEE STRIP
+    ══════════════════════════════ */
+    .marquee-strip {
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 1.1rem 0;
+      overflow: hidden;
+      background: var(--dark);
+    }
+    .marquee-track {
+      display: flex;
+      width: max-content;
+      animation: marquee 26s linear infinite;
+    }
+    .marquee-track span {
+      font-size: .7rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: 0 2.4rem;
+      white-space: nowrap;
+    }
+    .marquee-track span.dot {
+      color: var(--gold);
+      padding: 0;
+      letter-spacing: 0;
+    }
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* ══════════════════════════════
+       STORY
+    ══════════════════════════════ */
+    .story { padding: 9rem 0; }
+
+    .story-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: center;
+    }
+
+    .story-left .section-heading { margin-bottom: 2rem; }
+
+    .story-body {
+      font-size: .97rem;
+      line-height: 1.9;
+      color: var(--body);
+      margin-bottom: 1.4rem;
+    }
+    .story-body strong { color: var(--light); font-weight: 400; }
+
+    /* vertical visual column */
+    .story-visual {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 1.6rem;
+    }
+
+    .story-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 2rem 2.2rem;
+      position: relative;
+      transition: border-color .3s;
+    }
+    .story-card:hover { border-color: var(--gold); }
+    .story-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 3px; height: 0;
+      background: var(--gold);
+      transition: height .4s;
+    }
+    .story-card:hover::before { height: 100%; }
+
+    .story-card-num {
+      font-family: var(--serif);
+      font-size: 2.6rem;
+      font-weight: 300;
+      color: var(--border);
+      line-height: 1;
+      margin-bottom: .5rem;
+    }
+    .story-card-title {
+      font-size: .78rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: .5rem;
+    }
+    .story-card-text {
+      font-size: .88rem;
+      color: var(--body);
+    }
+
+    .story-offset { margin-top: 3rem; }
+
+    /* ══════════════════════════════
+       WHAT WE DO
+    ══════════════════════════════ */
+    .services {
+      padding: 9rem 0;
+      background: var(--dark);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .services-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 5rem;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+    .services-intro {
+      max-width: 380px;
+      font-size: .92rem;
+      color: var(--body);
+      line-height: 1.85;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      border: 1px solid var(--border);
+    }
+    .service-item {
+      padding: 3rem 2.4rem;
+      background: var(--dark);
+      border-right: 1px solid var(--border);
+      transition: background .3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .service-item:last-child { border-right: none; }
+    .service-item:hover { background: var(--card); }
+
+    .service-icon {
+      width: 44px; height: 44px;
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 2rem;
+      transition: border-color .3s;
+    }
+    .service-item:hover .service-icon { border-color: var(--gold); }
+    .service-icon svg { width: 20px; height: 20px; stroke: var(--gold); fill: none; stroke-width: 1.4; }
+
+    .service-link {
+      display: inline-block;
+      margin-top: 1.6rem;
+      font-size: .73rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      text-decoration: none;
+      transition: letter-spacing .25s;
+    }
+    .service-link:hover { letter-spacing: .22em; }
+
+    .service-title {
+      font-family: var(--serif);
+      font-size: 1.5rem;
+      font-weight: 400;
+      color: var(--white);
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+    .service-desc {
+      font-size: .87rem;
+      color: var(--body);
+      line-height: 1.85;
+    }
+    .service-item::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 0; height: 1px;
+      background: var(--gold);
+      transition: width .4s;
+    }
+    .service-item:hover::after { width: 100%; }
+
+    /* ══════════════════════════════
+       PHILOSOPHY
+    ══════════════════════════════ */
+    .philosophy { padding: 9rem 0; }
+
+    .phil-grid {
+      display: grid;
+      grid-template-columns: 5fr 4fr;
+      gap: 8rem;
+      align-items: start;
+    }
+
+    .phil-quote {
+      font-family: var(--serif);
+      font-size: clamp(1.7rem, 3.2vw, 2.6rem);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--white);
+      line-height: 1.45;
+      border-left: 2px solid var(--gold);
+      padding-left: 2.5rem;
+      margin: 3rem 0;
+    }
+
+    .phil-body {
+      font-size: .94rem;
+      line-height: 1.9;
+      color: var(--body);
+      margin-bottom: 1.3rem;
+    }
+
+    .phil-values {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      border: 1px solid var(--border);
+      margin-top: 0;
+    }
+    .phil-value {
+      padding: 1.6rem 2rem;
+      background: var(--card);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: flex-start;
+      gap: 1.2rem;
+      transition: background .3s;
+    }
+    .phil-value:last-child { border-bottom: none; }
+    .phil-value:hover { background: #1e1e1e; }
+    .phil-value-icon {
+      color: var(--gold);
+      font-family: var(--serif);
+      font-size: 1.3rem;
+      font-style: italic;
+      flex-shrink: 0;
+      margin-top: .1rem;
+    }
+    .phil-value-text strong {
+      display: block;
+      font-size: .8rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--light);
+      font-weight: 400;
+      margin-bottom: .3rem;
+    }
+    .phil-value-text span { font-size: .84rem; color: var(--body); }
+
+    /* ══════════════════════════════
+       PLATFORMS
+    ══════════════════════════════ */
+    .platforms {
+      padding: 7rem 0;
+      background: var(--dark);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      overflow: hidden;
+    }
+
+    .platforms-header { text-align: center; margin-bottom: 5rem; }
+    .platforms-header .section-heading { margin-bottom: 1rem; }
+    .platforms-header p {
+      font-size: .94rem;
+      color: var(--body);
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    .platforms-header .section-tag { justify-content: center; }
+    .platforms-header .section-tag::before { display: none; }
+
+    .platforms-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .platform-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 3.5rem 3rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      transition: border-color .3s, transform .3s;
+    }
+    .platform-card:hover { border-color: var(--gold); transform: translateY(-4px); }
+    .platform-card-bg {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity .4s;
+    }
+    .platform-card:hover .platform-card-bg { opacity: 1; }
+    .platform-card.shopify .platform-card-bg {
+      background: radial-gradient(circle at 50% 100%, rgba(149,191,71,.06) 0%, transparent 70%);
+    }
+    .platform-card.wordpress .platform-card-bg {
+      background: radial-gradient(circle at 50% 100%, rgba(0,117,187,.06) 0%, transparent 70%);
+    }
+    .platform-logo {
+      font-family: var(--serif);
+      font-size: 2.8rem;
+      font-weight: 300;
+      color: var(--white);
+      margin-bottom: 1rem;
+      line-height: 1;
+    }
+    .platform-logo span { color: var(--gold); }
+    .platform-tagline {
+      font-size: .78rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1.6rem;
+    }
+    .platform-desc {
+      font-size: .88rem;
+      color: var(--body);
+      line-height: 1.85;
+    }
+    .platform-link {
+      display: inline-block;
+      margin-top: 1.8rem;
+      font-size: .73rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      text-decoration: none;
+      transition: letter-spacing .25s;
+    }
+    .platform-link:hover { letter-spacing: .22em; }
+    .platform-divider {
+      width: 40px; height: 1px;
+      background: var(--gold);
+      margin: 1.6rem auto;
+    }
+
+    /* ══════════════════════════════
+       CTA SECTION
+    ══════════════════════════════ */
+    .cta-section { padding: 10rem 0; }
+
+    .cta-box {
+      max-width: 860px;
+      margin: 0 auto;
+      text-align: center;
+      position: relative;
+    }
+    .cta-box::before, .cta-box::after {
+      content: '';
+      position: absolute;
+      top: 50%; left: -2rem;
+      width: 1px; height: 70%;
+      background: linear-gradient(to bottom, transparent, var(--border), transparent);
+      transform: translateY(-50%);
+    }
+    .cta-box::after { left: auto; right: -2rem; }
+
+    .cta-badge {
+      display: inline-block;
+      font-size: .7rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--black);
+      background: var(--gold);
+      padding: .35rem 1rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .cta-title {
+      font-family: var(--serif);
+      font-size: clamp(2.4rem, 5.5vw, 4.5rem);
+      font-weight: 300;
+      color: var(--white);
+      line-height: 1.1;
+      margin-bottom: 1.6rem;
+    }
+    .cta-title em { font-style: italic; color: var(--gold); }
+
+    .cta-body {
+      font-size: .95rem;
+      color: var(--body);
+      line-height: 1.85;
+      max-width: 540px;
+      margin: 0 auto 3rem;
+    }
+
+    .cta-email-box {
+      display: inline-flex;
+      align-items: center;
+      gap: 0;
+      border: 1px solid var(--gold);
+      overflow: hidden;
+    }
+    .cta-email-label {
+      padding: 1rem 1.8rem;
+      font-size: .78rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--body);
+      background: transparent;
+      border-right: 1px solid var(--border);
+    }
+    .cta-email-link {
+      padding: 1rem 2rem;
+      font-size: .9rem;
+      color: var(--gold);
+      text-decoration: none;
+      background: transparent;
+      font-family: var(--sans);
+      font-weight: 400;
+      letter-spacing: .04em;
+      transition: background .25s, color .25s;
+    }
+    .cta-email-link:hover { background: var(--gold); color: var(--black); }
+
+    .cta-note {
+      margin-top: 1.8rem;
+      font-size: .78rem;
+      color: var(--muted);
+      letter-spacing: .06em;
+    }
+
+    /* ══════════════════════════════
+       FOOTER
+    ══════════════════════════════ */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 3.5rem 5vw;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+
+    .footer-logo {
+      font-family: var(--serif);
+      font-size: 1.3rem;
+      color: var(--white);
+      font-weight: 400;
+    }
+    .footer-logo span { color: var(--gold); }
+
+    .footer-copy {
+      font-size: .75rem;
+      color: var(--muted);
+      letter-spacing: .06em;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .footer-links a, .footer-links span {
+      font-size: .72rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color .25s;
+    }
+    .footer-links a:hover, .footer-links span:hover { color: var(--gold); }
+
+    /* ══════════════════════════════
+       RESPONSIVE
+    ══════════════════════════════ */
+    @media (max-width: 900px) {
+      .story-grid, .phil-grid { grid-template-columns: 1fr; gap: 4rem; }
+      .services-grid { grid-template-columns: 1fr; }
+      .service-item { border-right: none; border-bottom: 1px solid var(--border); }
+      .service-item:last-child { border-bottom: none; }
+      .platforms-cards { grid-template-columns: 1fr; max-width: 480px; }
+      .nav-links { display: none; }
+      .story-offset { margin-top: 0; }
+      .services-header { flex-direction: column; align-items: flex-start; }
+      footer { flex-direction: column; align-items: flex-start; }
+    }
+
+    @media (max-width: 600px) {
+      .hero { padding: 10rem 5vw 6rem; }
+      .cta-box::before, .cta-box::after { display: none; }
+      .cta-email-box { flex-direction: column; }
+      .cta-email-label { border-right: none; border-bottom: 1px solid var(--border); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── NAV ── -->
+  <nav id="mainNav">
+    <span class="nav-logo" onclick="scrollTo({top:0,behavior:'smooth'})" style="cursor:pointer">Spark<span>.</span>Themes</span>
+    <ul class="nav-links">
+      <li><span onclick="document.getElementById('story').scrollIntoView({behavior:'smooth'})">Our Story</span></li>
+      <li><span onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})">What We Do</span></li>
+      <li><span onclick="document.getElementById('philosophy').scrollIntoView({behavior:'smooth'})">Philosophy</span></li>
+      <li><span onclick="document.getElementById('platforms').scrollIntoView({behavior:'smooth'})">Platforms</span></li>
+    </ul>
+    <span class="nav-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})" style="cursor:pointer">Get in Touch</span>
+  </nav>
+
+  <!-- ── HERO ── -->
+  <section class="hero" id="home">
+    <div class="hero-glow"></div>
+    <p class="hero-label">Premium Theme Design Studio</p>
+    <h1 class="hero-title">Where Great <em>Storefronts</em><br>Are Born</h1>
+    <p class="hero-sub">
+      Spark Themes is a dedicated design studio crafting premium Shopify and WordPress themes and templates — built for brands that demand a higher standard.
+    </p>
+    <div class="hero-actions">
+      <span class="btn-primary" onclick="document.getElementById('story').scrollIntoView({behavior:'smooth'})" style="cursor:pointer">Discover Our Story</span>
+      <span class="btn-ghost" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})" style="cursor:pointer">Work With Us</span>
+    </div>
+    <div class="scroll-cue">
+      <div class="scroll-line"></div>
+      <span>Scroll to explore</span>
+    </div>
+  </section>
+
+  <!-- ── MARQUEE ── -->
+  <div class="marquee-strip" aria-hidden="true">
+    <div class="marquee-track">
+      <span>Shopify Themes</span><span class="dot">·</span>
+      <span>WordPress Templates</span><span class="dot">·</span>
+      <span>Custom Design</span><span class="dot">·</span>
+      <span>E-Commerce Focused</span><span class="dot">·</span>
+      <span>Conversion-Driven Layouts</span><span class="dot">·</span>
+      <span>Brand-First Aesthetics</span><span class="dot">·</span>
+      <span>Mobile-Optimised</span><span class="dot">·</span>
+      <span>Performance Crafted</span><span class="dot">·</span>
+      <span>Shopify Themes</span><span class="dot">·</span>
+      <span>WordPress Templates</span><span class="dot">·</span>
+      <span>Custom Design</span><span class="dot">·</span>
+      <span>E-Commerce Focused</span><span class="dot">·</span>
+      <span>Conversion-Driven Layouts</span><span class="dot">·</span>
+      <span>Brand-First Aesthetics</span><span class="dot">·</span>
+      <span>Mobile-Optimised</span><span class="dot">·</span>
+      <span>Performance Crafted</span><span class="dot">·</span>
+    </div>
+  </div>
+
+  <!-- ── STORY ── -->
+  <section class="story" id="story">
+    <div class="section-inner">
+      <div class="story-grid">
+        <div class="story-left reveal">
+          <p class="section-tag">Our Story</p>
+          <h2 class="section-heading">A Studio Born<br>from <em>Frustration</em></h2>
+          <p class="story-body">
+            Spark Themes was born from a simple observation: most online stores look the same. Identical layouts, recycled components, and themes that fail to express the soul of the brands wearing them.
+          </p>
+          <p class="story-body">
+            We started as a small team of designers and developers who believed that the digital storefront deserved the same thoughtfulness as a physical space. <strong>Every pixel, every transition, every typographic choice should serve a purpose.</strong>
+          </p>
+          <p class="story-body">
+            What began as side projects for close friends quickly became something larger — a growing library of meticulously crafted themes and templates that help businesses stand out in an increasingly crowded online world.
+          </p>
+          <p class="story-body">
+            Today, Spark Themes is entirely dedicated to this mission: building the most thoughtful, performant, and visually distinct themes for Shopify and WordPress on the market.
+          </p>
+        </div>
+        <div class="story-visual reveal" style="transition-delay:.2s">
+          <div class="story-card">
+            <div class="story-card-num">01</div>
+            <div class="story-card-title">The Spark Moment</div>
+            <div class="story-card-text">A frustration with cookie-cutter themes became the creative fuel that launched this studio — a drive to design experiences that actually feel intentional.</div>
+          </div>
+          <div class="story-card story-offset">
+            <div class="story-card-num">02</div>
+            <div class="story-card-title">Craft Over Quantity</div>
+            <div class="story-card-text">We never rush a release. Each theme goes through rounds of refinement before it bears our name — design, dev, QA, and real-world testing included.</div>
+          </div>
+          <div class="story-card">
+            <div class="story-card-num">03</div>
+            <div class="story-card-title">Built to Last</div>
+            <div class="story-card-text">Our themes are built on clean, forward-thinking code with accessibility, speed, and long-term maintainability at their core.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SERVICES ── -->
+  <section class="services" id="services">
+    <div class="section-inner">
+      <div class="services-header">
+        <div class="reveal">
+          <p class="section-tag">What We Do</p>
+          <h2 class="section-heading">Design That<br><em>Sells</em></h2>
+        </div>
+        <p class="services-intro reveal" style="transition-delay:.2s">
+          We focus on two of the world's leading commerce platforms — Shopify and WordPress — and we go deep on both, producing work that is as technically sound as it is visually refined.
+        </p>
+      </div>
+      <div class="services-grid">
+        <div class="service-item reveal">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="1"/><path d="M8 21h8M12 17v4"/></svg>
+          </div>
+          <h3 class="service-title">Shopify Themes</h3>
+          <p class="service-desc">Fully customisable Shopify themes engineered for conversion. Built with Liquid, JSON templates, and Section Everywhere architecture for maximum merchant flexibility.</p>
+          <span class="service-link" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})" style="cursor:pointer">Enquire Now →</span>
+        </div>
+        <div class="service-item reveal" style="transition-delay:.15s">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20M12 2a14.5 14.5 0 0 1 0 20M2 12h20"/></svg>
+          </div>
+          <h3 class="service-title">WordPress Templates</h3>
+          <p class="service-desc">Classic, block, and WooCommerce-ready WordPress themes. Designed for speed, SEO, and editorial flexibility — with clean PHP and modern CSS architectures.</p>
+          <span class="service-link" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})" style="cursor:pointer">Enquire Now →</span>
+        </div>
+        <div class="service-item reveal" style="transition-delay:.3s">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+          </div>
+          <h3 class="service-title">Custom Templates</h3>
+          <p class="service-desc">Need something that doesn't exist? We design and build bespoke templates for unique use cases — built to your brand, your audience, and your business requirements.</p>
+          <span class="service-link" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})" style="cursor:pointer">Enquire Now →</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PHILOSOPHY ── -->
+  <section class="philosophy" id="philosophy">
+    <div class="section-inner">
+      <div class="phil-grid">
+        <div class="reveal">
+          <p class="section-tag">Our Philosophy</p>
+          <h2 class="section-heading">Design With<br><em>Purpose</em></h2>
+          <blockquote class="phil-quote">
+            "A great theme doesn't just look beautiful — it thinks on behalf of the business wearing it."
+          </blockquote>
+          <p class="phil-body">
+            We believe design is strategy. Every layout decision, every spacing choice, every colour relationship carries commercial intent. Our themes are not decoration — they are infrastructure for growth.
+          </p>
+          <p class="phil-body">
+            We obsess over the things most theme builders overlook: load performance, accessible markup, responsive edge cases, and the subtle micro-interactions that transform browsers into buyers.
+          </p>
+          <p class="phil-body">
+            We are a small studio by design. That means every theme we release gets the full weight of our attention, and nothing ships unless it genuinely meets the standard we'd set for ourselves.
+          </p>
+        </div>
+        <div class="reveal" style="transition-delay:.2s">
+          <div class="phil-values" style="margin-top:5.5rem">
+            <div class="phil-value">
+              <div class="phil-value-icon">I.</div>
+              <div class="phil-value-text">
+                <strong>Intentional Design</strong>
+                <span>Every visual decision is made with purpose — no filler, no noise, no decoration for its own sake.</span>
+              </div>
+            </div>
+            <div class="phil-value">
+              <div class="phil-value-icon">II.</div>
+              <div class="phil-value-text">
+                <strong>Performance First</strong>
+                <span>Speed is a feature. Our themes are lean, well-optimised, and built to score well on real metrics.</span>
+              </div>
+            </div>
+            <div class="phil-value">
+              <div class="phil-value-icon">III.</div>
+              <div class="phil-value-text">
+                <strong>Merchant Empowerment</strong>
+                <span>Flexibility without chaos. Deep customisation options that don't require a developer to use.</span>
+              </div>
+            </div>
+            <div class="phil-value">
+              <div class="phil-value-icon">IV.</div>
+              <div class="phil-value-text">
+                <strong>Lasting Quality</strong>
+                <span>Built on clean code that scales, stays readable, and ages gracefully alongside evolving platform standards.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PLATFORMS ── -->
+  <section class="platforms" id="platforms">
+    <div class="section-inner">
+      <div class="platforms-header reveal">
+        <p class="section-tag">Our Platforms</p>
+        <h2 class="section-heading">Two Platforms.<br><em>Infinite Possibilities.</em></h2>
+        <p>We chose to go deep rather than broad. Mastering Shopify and WordPress means our output is always expert-level — never surface-deep.</p>
+      </div>
+      <div class="platforms-cards">
+        <div class="platform-card shopify reveal">
+          <div class="platform-card-bg"></div>
+          <div class="platform-logo">Shop<span>ify</span></div>
+          <div class="platform-tagline">E-Commerce Themes & Sections</div>
+          <div class="platform-divider"></div>
+          <p class="platform-desc">
+            We build for Shopify's full ecosystem — from Dawn-compatible themes to custom section templates and app extension blocks. Built to the latest OS 2.0 standard with JSON-based templates and rich customiser support.
+          </p>
+          <span class="platform-link" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})" style="cursor:pointer">Get in Touch →</span>
+        </div>
+        <div class="platform-card wordpress reveal" style="transition-delay:.2s">
+          <div class="platform-card-bg"></div>
+          <div class="platform-logo">Word<span>Press</span></div>
+          <div class="platform-tagline">Themes, Blocks & WooCommerce</div>
+          <div class="platform-divider"></div>
+          <p class="platform-desc">
+            From editorial blogs to full WooCommerce storefronts, our WordPress themes are versatile, standards-compliant, and crafted for the block editor era — with deep page builder compatibility as standard.
+          </p>
+          <span class="platform-link" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})" style="cursor:pointer">Get in Touch →</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA ── -->
+  <section class="cta-section" id="contact">
+    <div class="section-inner">
+      <div class="cta-box reveal">
+        <div class="cta-badge">Custom Work Available</div>
+        <h2 class="cta-title">Need Something<br><em>Tailored</em> to You?</h2>
+        <p class="cta-body">
+          Whether you need a bespoke Shopify theme built to your brand identity, a custom WordPress template for a unique niche, or something in between — we'd love to hear about it. Reach out directly and let's talk.
+        </p>
+        <div class="cta-email-box">
+          <span class="cta-email-label">Email us at</span>
+          <a href="mailto:sparkforge2026@proton.me" class="cta-email-link">sparkforge2026@proton.me</a>
+        </div>
+        <p class="cta-note">Custom themes · Template modifications · Niche-specific builds · Priority support</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer>
+    <div class="footer-logo">Spark<span>.</span>Themes</div>
+    <p class="footer-copy">&copy; 2025 Spark Themes. All rights reserved.</p>
+    <ul class="footer-links">
+      <li><span onclick="document.getElementById('story').scrollIntoView({behavior:'smooth'})" style="cursor:pointer">Story</span></li>
+      <li><span onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})" style="cursor:pointer">Services</span></li>
+      <li><span onclick="document.getElementById('philosophy').scrollIntoView({behavior:'smooth'})" style="cursor:pointer">Philosophy</span></li>
+      <li><span onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})" style="cursor:pointer">Contact</span></li>
+    </ul>
+  </footer>
+
+  <script>
+    // NAV scroll effect
+    const nav = document.getElementById('mainNav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 50);
+    }, { passive: true });
+
+    // Scroll reveal
+    const revealEls = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    revealEls.forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
